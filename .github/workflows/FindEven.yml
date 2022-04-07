@@ -1,0 +1,23 @@
+# This is a basic workflow to help you get started with Actions
+
+name: findEven
+
+# Controls when the workflow will run
+on:
+  push:
+    branches: [ test ]
+    paths: '*/FindEven.md'
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  run-shell-command:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@test
+      - name: Read the file and raise an even number of lines
+        run: |
+          line = wc -l < FindEven.md
+          if [$line%2 != 0]; then:
+            echo "fail"
+            exit 1
+          fi
