@@ -22,7 +22,7 @@ jobs:
       - name: File exists
         if: steps.check_files.outputs.files_exists == 'true'
         run: |
-         cnt = `wc -l < FindEven.md`
+         cnt = $(wc -l < FindEven.md)
          if [[`$cnt%2` == 1]]; then
             exit 1
          else
