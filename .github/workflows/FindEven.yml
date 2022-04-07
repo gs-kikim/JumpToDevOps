@@ -23,6 +23,7 @@ jobs:
         if: steps.check_files.outputs.files_exists == 'true'
         run: |
          echo "CNT=$(echo `wc -l < FindEven.md`)" >> $GITHUB_ENV
+         echo $CNT
          if [[`${CNT} % 2` == 1]]; then
             exit 1
          else
