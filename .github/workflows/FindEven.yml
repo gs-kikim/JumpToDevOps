@@ -21,9 +21,8 @@ jobs:
 
       - name: File exists
         if: steps.check_files.outputs.files_exists == 'true'
-        env:
-         CNT: $(`wc -l < FindEven.md`)
         run: |
+         echo "CNT=$(echo `wc -l < FindEven.md`)" >> $GITHUB_ENV
          if [[`${CNT} % 2` == 1]]; then
             exit 1
          else
