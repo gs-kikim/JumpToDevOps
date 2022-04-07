@@ -22,9 +22,9 @@ jobs:
       - name: File exists
         if: steps.check_files.outputs.files_exists == 'true'
         run: |
-          a=`echo | wc -l < FindEven.md`
-          sum=$(($a%2))
-          echo $a $sum
+          line=`echo | wc -l < FindEven.md`
+          sum=$(($line%2))
+          echo "line =" $a
           if [ $sum = 0 ]
           then
             echo "success"
