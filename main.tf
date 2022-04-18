@@ -1,19 +1,18 @@
 terraform {
-  required_version = ">= 1.0.0, < 2.0.0"
-
   required_providers {
     aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.0"
+      source = "hashicorp/aws"
+    }
+    random = {
+      source = "hashicorp/random"
     }
   }
-}
 
-provider "aws" {
-  region = "us-east-2"
-}
+  cloud {
+    organization = "REPLACE_ME"
 
-resource "aws_instance" "example" {
-  ami           = "ami-0fb653ca2d3203ac1"
-  instance_type = "t2.micro"
+    workspaces {
+      name = "gh-actions-demo"
+    }
+  }
 }
