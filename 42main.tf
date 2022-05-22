@@ -1,3 +1,22 @@
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+    }
+    random = {
+      source = "hashicorp/random"
+    }
+  }
+
+  cloud {
+    organization = "example-teraform2"
+
+    workspaces {
+      name = "gh-actions-demo2"
+    }
+  }
+}
+
 provider "aws" {
   region = "us-east-2"
 
@@ -6,7 +25,13 @@ provider "aws" {
 }
 
 terraform {
-   backend "consul" {}
+  backend "remote" {
+    organization = "example-teraform2"
+
+    workspaces {
+      name = "gh-actions-demo2"
+    }
+  }
 }
 
 resource "aws_instance" "example2" {
